@@ -1,5 +1,10 @@
 <?php
 
+require '../../vendor/autoload.php';
+
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
 class Conexao
 {
     private $host = 'localhost';
@@ -11,7 +16,7 @@ class Conexao
 
     public function __construct()
     {
-        $this->password = getenv('SENHA_BANCO');
+        $this->password = $_ENV['SENHA_BANCO'];
     }
 
     public function conectar()
