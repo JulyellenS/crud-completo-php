@@ -1,10 +1,12 @@
 <?php
 require_once '../service/PessoaService.php';
 
+// Verifica se o formulário foi enviado via POST
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
     // Captura os dados do formulário
     $dadosPessoa = [
+        'id_pessoa'         => isset($_POST['id_pessoa']) ? $_POST['id_pessoa'] : null,
         'nm_pessoa'         => $_POST['nm_pessoa'],
         'nu_cpf'            => $_POST['nu_cpf'],
         'nu_registro'       => $_POST['nu_registro'],
@@ -24,12 +26,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
     try
     {
-        // Chama o serviço para cadastrar a pessoa
-        $pessoaService->cadastrarPessoa($dadosPessoa);
-        echo "Cadastro realizado com sucesso!";
+        // Verifica se o ID da pessoa está presente
+        if (!empty($dadosPessoa['id_pessoa']))
+        {
+            // Atualiza a pessoa existente
+            $pessoaService->atualizarPessoa((object)$dadosPessoa);
+            echo "Pessoa atualizada com sucesso!";
+        }
+        else
+        {
+            // Cadastra uma nova pessoa
+            $pessoaService->cadastrarPessoa($dadosPessoa);
+            echo "Cadastro realizado com sucesso!";
+        }
     }
     catch (Exception $e)
     {
-        echo "Erro ao cadastrar pessoa: " . $e->getMessage();
+        echo "Erro ao processar a solicitação: " . $e->getMessage();
     }
+}
+else
+{
+    // Redireciona para a página de listagem se o acesso não for via POST
+    header('Location: ../view/listagem-pessoa.html');
+    exit();
 }
