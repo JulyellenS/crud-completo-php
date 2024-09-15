@@ -1,9 +1,31 @@
 <?php
-require_once '../model/Pessoa.php';
-require_once '../repository/PessoaRepository.php';
+require_once __DIR__. '../../model/Pessoa.php';
+require_once __DIR__ . '../../repository/PessoaRepository.php';
 
 class PessoaService
 {
+    private $repository;
+
+    public function __construct() {
+        $this->repository = new PessoaRepository();
+    }
+
+    public function listarPessoas() {
+        return $this->repository->findAll();
+    }
+
+    public function obterPessoa($id_pessoa) {
+        return $this->repository->findById($id_pessoa);
+    }
+
+    public function excluirPessoa($id_pessoa) {
+        return $this->repository->delete($id_pessoa);
+    }
+
+    public function atualizarPessoa(Pessoa $pessoa) {
+        return $this->repository->update($pessoa);
+    }
+
     public function cadastrarPessoa($dados)
     {
         // Validação dos dados (pode adicionar mais validações aqui)
