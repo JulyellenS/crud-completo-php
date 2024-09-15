@@ -15,7 +15,7 @@ class Pessoa
     private $nm_estado;
     private $nm_cidade;
 
-    public function __construct($id_pessoa = null,$nm_pessoa = null,$nu_cpf = null,$nu_registro = null,$dt_nascimento = null,$sg_orgaoexpedidor = null,$nu_cep = null,$nm_rua = null,$nm_bairro = null,$ds_complemento = null,$nu_endereco = null,$nm_estado = null,$nm_cidade = null)
+    public function __construct($id_pessoa = null, $nm_pessoa = null, $nu_cpf = null, $nu_registro = null, $dt_nascimento = null, $sg_orgaoexpedidor = null, $nu_cep = null, $nm_rua = null, $nm_bairro = null, $ds_complemento = null, $nu_endereco = null, $nm_estado = null, $nm_cidade = null)
     {
         $this->id_pessoa = $id_pessoa;
         $this->nm_pessoa = $nm_pessoa;
