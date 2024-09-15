@@ -1,71 +1,65 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Pessoa</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
     <div class="container mt-5">
-        <h1 class="text-center mb-4">Cadastro de Pessoa</h1>
-        <form action="../control/processa_cadastro.php" method="POST">
-            <div class="mb-3">
-                <label for="nm_pessoa" class="form-label">Nome</label>
+        <h2>Cadastro de Pessoa</h2>
+        <form action="../control/PessoaForm.php" method="POST">
+            <div class="form-group">
+                <label for="nm_pessoa">Nome:</label>
                 <input type="text" class="form-control" id="nm_pessoa" name="nm_pessoa" required>
             </div>
-            <div class="mb-3">
-                <label for="nu_cpf" class="form-label">CPF</label>
+            <div class="form-group">
+                <label for="nu_cpf">CPF:</label>
                 <input type="text" class="form-control" id="nu_cpf" name="nu_cpf" required>
             </div>
-            <div class="mb-3">
-                <label for="nu_registro" class="form-label">Número de Registro</label>
+            <div class="form-group">
+                <label for="nu_registro">Núm. Registro:</label>
                 <input type="text" class="form-control" id="nu_registro" name="nu_registro">
             </div>
-            <div class="mb-3">
-                <label for="dt_nascimento" class="form-label">Data de Nascimento</label>
-                <input type="date" class="form-control" id="dt_nascimento" name="dt_nascimento">
+            <div class="form-group">
+                <label for="dt_nascimento">Data de Nascimento:</label>
+                <input type="date" class="form-control" id="dt_nascimento" name="dt_nascimento" required>
             </div>
-            <div class="mb-3">
-                <label for="sg_orgaoexpedidor" class="form-label">Órgão Expedidor</label>
+            <div class="form-group">
+                <label for="sg_orgaoexpedidor">Orgão Expedidor:</label>
                 <input type="text" class="form-control" id="sg_orgaoexpedidor" name="sg_orgaoexpedidor">
             </div>
-            <div class="mb-3">
-                <label for="nu_cep" class="form-label">CEP</label>
-                <input type="text" class="form-control" id="nu_cep" name="nu_cep">
+            <div class="form-group">
+                <label for="nu_cep">CEP:</label>
+                <input type="text" class="form-control" id="nu_cep" name="nu_cep" required>
             </div>
-            <div class="mb-3">
-                <label for="nm_rua" class="form-label">Rua</label>
-                <input type="text" class="form-control" id="nm_rua" name="nm_rua">
+            <div class="form-group">
+                <label for="nm_rua">Rua:</label>
+                <input type="text" class="form-control" id="nm_rua" name="nm_rua" required>
             </div>
-            <div class="mb-3">
-                <label for="nm_bairro" class="form-label">Bairro</label>
-                <input type="text" class="form-control" id="nm_bairro" name="nm_bairro">
+            <div class="form-group">
+                <label for="nm_bairro">Bairro:</label>
+                <input type="text" class="form-control" id="nm_bairro" name="nm_bairro" required>
             </div>
-            <div class="mb-3">
-                <label for="ds_complemento" class="form-label">Complemento</label>
+            <div class="form-group">
+                <label for="ds_complemento">Complemento:</label>
                 <input type="text" class="form-control" id="ds_complemento" name="ds_complemento">
             </div>
-            <div class="mb-3">
-                <label for="nu_endereco" class="form-label">Número do Endereço</label>
-                <input type="text" class="form-control" id="nu_endereco" name="nu_endereco">
+            <div class="form-group">
+                <label for="nu_endereco">Número:</label>
+                <input type="text" class="form-control" id="nu_endereco" name="nu_endereco" required>
             </div>
-            <div class="mb-3">
-                <label for="nm_estado" class="form-label">Estado</label>
-                <input type="text" class="form-control" id="nm_estado" name="nm_estado">
+            <div class="form-group">
+                <label for="nm_estado">Estado:</label>
+                <input type="text" class="form-control" id="nm_estado" name="nm_estado" required>
             </div>
-            <div class="mb-3">
-                <label for="nm_cidade" class="form-label">Cidade</label>
-                <input type="text" class="form-control" id="nm_cidade" name="nm_cidade">
+            <div class="form-group">
+                <label for="nm_cidade">Cidade:</label>
+                <input type="text" class="form-control" id="nm_cidade" name="nm_cidade" required>
             </div>
-            <div class="d-grid">
-                <button type="submit" class="btn btn-primary">Cadastrar</button>
-            </div>
+            <button type="submit" class="btn btn-primary">Cadastrar</button>
         </form>
     </div>
-
-    <!-- Bootstrap JS (opcional) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
