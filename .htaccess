@@ -1,0 +1,9 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{REQUEST_URI} "/\.\./" [OR]
+    RewriteCond %{REQUEST_URI} "/\%2e\%2e/" [OR]
+    RewriteCond %{REQUEST_URI} "\.\." [NC]
+    RewriteRule (.*) - [F,L]
+    RewriteCond %{HTTPS} !=on
+    RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
