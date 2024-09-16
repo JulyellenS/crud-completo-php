@@ -1,0 +1,36 @@
+/* Padrão: Tema claro */
+body
+{
+    background-color: #ffffff;
+    color: #000000;
+}
+
+/* Tema escuro */
+@media (prefers-color-scheme: dark)
+{
+    body
+    {
+        background-color: #121212;
+        color: #ffffff;
+    }
+}
+
+/* Altera a cor das labels dos formulários */
+label
+{
+    color: #ffcc00; /* Exemplo: cor amarela */
+}
+
+
+/* Altera a cor do texto nas tabelas */
+.table th, .table td
+{
+    color: #ffffff; /* Cor branca */
+}
+
+/* Altera a cor do texto nos campos de formulário */
+.form-control
+{
+    color: #ffffff; /* Cor branca */
+    /*background-color: #333333; /* Fundo escuro para contraste */
+}
