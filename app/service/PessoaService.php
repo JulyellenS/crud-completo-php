@@ -6,33 +6,39 @@ class PessoaService
 {
     private $repository;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->repository = new PessoaRepository();
     }
 
-    public function listarPessoas() {
-        return $this->repository->findAll();
+    public function listarPessoas()
+    {
+        return $this->repository->buscarTodos();
     }
 
-    public function obterPessoa($id_pessoa) {
-        return $this->repository->findById($id_pessoa);
+    public function obterPessoa($id_pessoa)
+    {
+        return $this->repository->buscarPeloId($id_pessoa);
     }
 
-    public function excluirPessoa($id_pessoa) {
-        return $this->repository->delete($id_pessoa);
+    public function excluirPessoa($id_pessoa)
+    {
+        return $this->repository->excluir($id_pessoa);
     }
 
-    public function atualizarPessoa(Pessoa $pessoa) {
-        return $this->repository->update($pessoa);
+    public function atualizarPessoa(Pessoa $pessoa)
+    {
+        return $this->repository->atualizar($pessoa);
     }
 
     public function cadastrarPessoa($dados)
     {
         // Validação dos dados (pode adicionar mais validações aqui)
-        if (empty($dados['nm_pessoa']) || empty($dados['nu_cpf'])) {
+        if (empty($dados['nm_pessoa']) || empty($dados['nu_cpf']))
+        {
             throw new Exception('Nome e CPF são obrigatórios.');
         }
-
+        
         // Instância da Pessoa
         $pessoa = new Pessoa(
             null,
@@ -51,7 +57,6 @@ class PessoaService
         );
 
         // Repositório para persistir a Pessoa
-        $pessoaRepo = new PessoaRepository();
-        $pessoaRepo->inserirPessoa($pessoa);
+        $this->repository->inserirPessoa($pessoa);
     }
 }

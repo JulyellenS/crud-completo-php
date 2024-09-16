@@ -38,7 +38,8 @@ class PessoaRepository
             $stmt->bindValue(':nm_cidade', $pessoa->getNmCidade());
 
             // Executa a query
-            if (!$stmt->execute()) {
+            if (!$stmt->execute())
+            {
                 throw new Exception('Erro ao executar a inserção: ' . implode(', ', $stmt->errorInfo()));
             }
         }
@@ -49,14 +50,16 @@ class PessoaRepository
     }
 
 
-    public function findAll() {
+    public function buscarTodos()
+    {
         $sql = "SELECT id_pessoa, nm_pessoa, nu_cpf, dt_nascimento, nm_cidade FROM pessoa";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function findById($id_pessoa) {
+    public function buscarPeloId($id_pessoa)
+    {
         $sql = "SELECT * FROM pessoa WHERE id_pessoa = :id_pessoa";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':id_pessoa', $id_pessoa, PDO::PARAM_INT);
@@ -64,14 +67,16 @@ class PessoaRepository
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function delete($id_pessoa) {
+    public function excluir($id_pessoa)
+    {
         $sql = "DELETE FROM pessoa WHERE id_pessoa = :id_pessoa";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':id_pessoa', $id_pessoa, PDO::PARAM_INT);
         return $stmt->execute();
     }
 
-    public function update(Pessoa $pessoa) {
+    public function atualizar(Pessoa $pessoa)
+    {
         $sql = "UPDATE pessoa SET 
                     nm_pessoa = :nm_pessoa, 
                     nu_cpf = :nu_cpf, 
