@@ -7,10 +7,10 @@ $dotenv->load();
 
 class Conexao
 {
-    private $host = 'localhost';
-    private $port = '5432';
+    private $host = 'private-db-postgresql-do-user-11920175-0.k.db.ondigitalocean.com';
+    private $port = '25060';
     private $dbname = 'projeto_php';
-    private $user = 'postgres';
+    private $user = 'doadmin';
     private $password;
     private $conn;
 
