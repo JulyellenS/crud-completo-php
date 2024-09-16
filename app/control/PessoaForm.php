@@ -1,5 +1,6 @@
 <?php
 require_once '../service/PessoaService.php';
+require_once '../control/PessoaList.php';
 
 // Verifica se o formulário foi enviado via POST
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
@@ -23,6 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
     // Instancia o serviço de Pessoa
     $pessoaService = new PessoaService();
+    $pessoaList= new PessoaList();
 
     try
     {
@@ -31,13 +33,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
         {
             // Atualiza a pessoa existente
             $pessoaService->atualizarPessoa((object)$dadosPessoa);
-            echo "Pessoa atualizada com sucesso!";
+            $pessoaList->listar();
         }
         else
         {
             // Cadastra uma nova pessoa
             $pessoaService->cadastrarPessoa($dadosPessoa);
-            echo "Cadastro realizado com sucesso!";
+            $pessoaList->listar();
         }
     }
     catch (Exception $e)
@@ -48,6 +50,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 else
 {
     // Redireciona para a página de listagem se o acesso não for via POST
-    header('Location: ../view/listagem-pessoa.html');
+    $pessoaList->listar();
     exit();
 }
