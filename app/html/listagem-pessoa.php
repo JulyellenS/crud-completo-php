@@ -23,6 +23,7 @@
                 </tr>
             </thead>
             <tbody>
+            <?php if (!empty($pessoas)): ?>
                 <?php foreach ($pessoas as $pessoa): ?>
                     <tr>
                         <td><?= $pessoa['id_pessoa'] ?></td>
@@ -31,11 +32,16 @@
                         <td><?= date('d/m/Y', strtotime($pessoa['dt_nascimento'])) ?></td>
                         <td><?= $pessoa['nm_cidade'] ?></td>
                         <td>
-                            <a href="app/control/PessoaList.php?action=editar&id_pessoa=<?= $pessoa['id_pessoa'] ?>" class="btn btn-sm btn-info">Editar</a>
-                            <a href="app/control/PessoaList.php?action=excluir&id_pessoa=<?= $pessoa['id_pessoa'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Tem certeza que deseja excluir?')">Excluir</a>
+                            <a href="index.php?action=editar&id_pessoa=<?= $pessoa['id_pessoa'] ?>" class="btn btn-sm btn-primary">Editar</a>
+                            <a href="index.php?action=excluir&id_pessoa=<?= $pessoa['id_pessoa'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Tem certeza que deseja excluir?')">Excluir</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
+            <?php else: ?>
+                <tr>
+                    <td colspan="6">Nenhuma pessoa encontrada.</td>
+                </tr>
+            <?php endif; ?>
             </tbody>
         </table>
     </div>

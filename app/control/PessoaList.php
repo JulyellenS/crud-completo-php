@@ -1,6 +1,8 @@
 <?php
+
 require_once __DIR__ . '../../service/PessoaService.php';
 require_once __DIR__ . '../../model/Pessoa.php';
+
 class PessoaList
 {
     private $service;
@@ -66,7 +68,6 @@ class PessoaList
     private function render($template, $data = [])
     {
         extract($data); // Extrai variáveis do array $data para a tabela global
-        include __DIR__ . '/../html/' . $template;
+        include __DIR__ . '../../html/' . $template;
     }
-
 }

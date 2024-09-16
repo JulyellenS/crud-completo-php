@@ -13,6 +13,12 @@ body
         background-color: #121212;
         color: #ffffff;
     }
+
+    .form-control
+    {
+        background-color: #121212;
+        color: #ffffff;
+    }
 }
 
 /* Altera a cor das labels dos formulários */
@@ -21,11 +27,15 @@ label
     color: #ffcc00; /* Exemplo: cor amarela */
 }
 
-
 /* Altera a cor do texto nas tabelas */
-.table th, .table td
+.table th
 {
-    color: #ffffff; /* Cor branca */
+    color: #ffcc00; /* Cor branca */
+}
+
+.table td
+{
+    color: #ffffff;
 }
 
 /* Altera a cor do texto nos campos de formulário */
