@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="app/css/style.css">
 </head>
 <body>
+<?php include 'navbar.php'; ?> <!-- Chama a navbar -->
     <div class="container mt-5">
         <h2>Listagem de Pessoas</h2>
         <a href="app/html/cadastro-pessoa.php" class="btn btn-success mb-3">Cadastrar</a>
