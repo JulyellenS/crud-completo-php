@@ -31,13 +31,7 @@ class PessoaList
 
     public function editar()
     {
-        if (isset($_GET['id_pessoa']))
-        {
-            $id_pessoa = $_GET['id_pessoa'];
-            $pessoa = $this->service->obterPessoa($id_pessoa);
-            $this->render('cadastro-pessoa.php', ['pessoa' => $pessoa]);
-        }
-        elseif ($_SERVER['REQUEST_METHOD'] == 'POST')
+        if ($_SERVER['REQUEST_METHOD'] == 'POST')
         {
             $pessoa = new Pessoa();
             $pessoa->setIdPessoa($_POST['id_pessoa']);
@@ -53,14 +47,24 @@ class PessoaList
             $pessoa->setNuEndereco($_POST['nu_endereco']);
             $pessoa->setNmEstado($_POST['nm_estado']);
             $pessoa->setNmCidade($_POST['nm_cidade']);
-
+            
             $this->service->atualizarPessoa($pessoa);
-            header('Location: ../html/cadastro-pessoa.php');
+            // $this->render('listagem-pessoa.php', ['pessoa' => $pessoa]);
+            self::listar();
+            // header('Location: ../html/cadastro-pessoa.php');
             exit();
+        }
+        elseif (isset($_GET['id_pessoa']))
+        {
+            $id_pessoa = $_GET['id_pessoa'];
+            $pessoa = $this->service->obterPessoa($id_pessoa);
+            $this->render('cadastro-pessoa.php', ['pessoa' => $pessoa]);
         }
         else
         {
-            header('Location: ../html/cadastro-pessoa.php');
+            // $this->render('listagem-pessoa.php');
+            self::listar();
+            // header('Location: ../html/cadastro-pessoa.php');
             exit();
         }
     }

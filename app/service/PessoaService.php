@@ -31,30 +31,13 @@ class PessoaService
         return $this->repository->atualizar($pessoa);
     }
 
-    public function cadastrarPessoa($dados)
+    public function cadastrarPessoa(Pessoa $pessoa)
     {
         // Validação dos dados (pode adicionar mais validações aqui)
-        if (empty($dados['nm_pessoa']) || empty($dados['nu_cpf']))
+        if (empty($pessoa->getNmPessoa()) || empty($pessoa->getNuCpf()))
         {
             throw new Exception('Nome e CPF são obrigatórios.');
         }
-        
-        // Instância da Pessoa
-        $pessoa = new Pessoa(
-            null,
-            $dados['nm_pessoa'],
-            $dados['nu_cpf'],
-            $dados['nu_registro'],
-            $dados['dt_nascimento'],
-            $dados['sg_orgaoexpedidor'],
-            $dados['nu_cep'],
-            $dados['nm_rua'],
-            $dados['nm_bairro'],
-            $dados['ds_complemento'],
-            $dados['nu_endereco'],
-            $dados['nm_estado'],
-            $dados['nm_cidade']
-        );
 
         // Repositório para persistir a Pessoa
         $this->repository->inserirPessoa($pessoa);

@@ -96,7 +96,16 @@ class PessoaRepository
         $stmt->bindParam(':id_pessoa', $pessoa->getIdPessoa());
         $stmt->bindParam(':nm_pessoa', $pessoa->getNmPessoa());
         $stmt->bindParam(':nu_cpf', $pessoa->getNuCpf());
-        // Bind other parameters...
+        $stmt->bindParam(':nu_registro', $pessoa->getNuRegistro());
+        $stmt->bindParam(':dt_nascimento', $pessoa->getDtNascimento());
+        $stmt->bindParam(':sg_orgaoexpedidor', $pessoa->getSgOrgaoExpedidor());
+        $stmt->bindParam(':nu_cep', $pessoa->getNuCep());
+        $stmt->bindParam(':nm_rua', $pessoa->getNmRua());
+        $stmt->bindParam(':nm_bairro', $pessoa->getNmBairro());
+        $stmt->bindParam(':ds_complemento', $pessoa->getDsComplemento());
+        $stmt->bindParam(':nu_endereco', $pessoa->getNuEndereco());
+        $stmt->bindParam(':nm_estado', $pessoa->getNmEstado());
+        $stmt->bindParam(':nm_cidade', $pessoa->getNmCidade());
         return $stmt->execute();
     }
 }
