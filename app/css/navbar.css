@@ -1,0 +1,42 @@
+/* Estilos da navbar */
+.navbar
+{
+    background-color: #676767; /* Cor de fundo do navbar */
+    padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000; /* Garantir que o navbar fique acima de outros elementos */
+}
+
+.navbar-menu
+{
+    list-style-type: none; /* Remove os marcadores da lista */
+    margin: 0;
+    padding: 0;
+    display: flex; /* Alinha os itens na horizontal */
+}
+
+.navbar-menu li
+{
+    margin-right: 20px; /* Espaçamento entre os links */
+}
+
+.navbar-menu li a
+{
+    color: white; /* Cor do texto */
+    text-decoration: none; /* Remove o sublinhado dos links */
+    padding: 10px 15px;
+    display: block; /* Faz com que o link ocupe todo o espaço do item */
+}
+
+.navbar-menu li a:hover
+{
+    background-color: #555; /* Cor de fundo ao passar o mouse */
+    transition: background-color 0.3s;
+}
+
+.container
+{
+    padding: 15px 0px;
+}
