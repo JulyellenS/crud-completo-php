@@ -12,7 +12,7 @@
     <nav class="navbar">
         <ul class="navbar-menu">
             <li><a href="index.php">Home</a></li>
-            <li><a href="app/html/cadastro-pessoa.php">Cadastrar Pessoa</a></li>
+            <li><a href="index.php?action=cadastrar">Cadastrar Pessoa</a></li>
             <li><a href="index.php?action=listar">Listar Pessoas</a></li>
             <li><a href="#">Contato</a></li>
         </ul>

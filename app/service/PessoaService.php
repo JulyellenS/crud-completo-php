@@ -1,6 +1,8 @@
 <?php
-require_once __DIR__. '../../model/Pessoa.php';
-require_once __DIR__ . '../../repository/PessoaRepository.php';
+namespace App\Service;
+
+use App\Repository\PessoaRepository;
+use App\Model\Pessoa;
 
 class PessoaService
 {

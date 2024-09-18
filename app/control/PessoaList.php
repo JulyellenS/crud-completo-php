@@ -1,7 +1,7 @@
 <?php
+namespace App\Control;
 
-require_once __DIR__ . '../../service/PessoaService.php';
-require_once __DIR__ . '../../model/Pessoa.php';
+use App\Service\PessoaService;
 
 class PessoaList
 {
@@ -15,7 +15,8 @@ class PessoaList
     public function listar()
     {
         $pessoas = $this->service->listarPessoas();
-        $this->render('listagem-pessoa.php', ['pessoas' => $pessoas]);
+        include __DIR__ . '/../html/listagem-pessoa.php';
+        // $this->render('listagem-pessoa.php', ['pessoas' => $pessoas]);
     }
 
     public function excluir()
@@ -25,7 +26,8 @@ class PessoaList
             $id_pessoa = $_GET['id'];
             $this->service->excluirPessoa($id_pessoa);
         }
-        header('Location: ../html/listagem-pessoa.php');
+        include __DIR__ . '/../html/listagem-pessoa.php';
+        // header('Location: ../html/listagem-pessoa.php');
         exit();
     }
 

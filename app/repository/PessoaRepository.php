@@ -1,5 +1,9 @@
 <?php
-require_once __DIR__ . '../../config/Conexao.php';
+namespace App\Repository;
+
+use App\Config\Conexao;
+use App\Model\Pessoa;
+use PDO;
 
 class PessoaRepository
 {

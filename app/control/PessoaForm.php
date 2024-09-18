@@ -1,7 +1,7 @@
 <?php
-require_once 'app/service/PessoaService.php';
-require_once 'app/control/PessoaList.php';
-require_once 'index.php';
+namespace App\Control;
+
+use App\Service\PessoaService;
 
 class PessoaForm
 {
@@ -43,14 +43,16 @@ class PessoaForm
                 {
                     // Atualiza a pessoa existente
                     $this->pessoaService->atualizarPessoa($pessoa);
-                    header('Location: index.php?action=listar');
+                    include __DIR__ . '/../html/listagem-pessoa.php';
+                    // header('Location: index.php?action=listar');
                     // $this->pessoaList->listar();
                 }
                 else
                 {
                     // Cadastra uma nova pessoa
                     $this->pessoaService->cadastrarPessoa($pessoa);
-                    header('Location: index.php?action=listar');
+                    include __DIR__ . '/../html/listagem-pessoa.php';
+                    // header('Location: index.php?action=listar');
                 }
             }
             catch (Exception $e)
@@ -68,7 +70,7 @@ class PessoaForm
 
     public function cadastrar()
     {
-        $this->render('cadastro-pessoa.php');
+        include __DIR__ . '/../html/cadastro-pessoa.php';
     }
 
     private function render($template, $data = [])

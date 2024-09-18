@@ -1,6 +1,9 @@
 <?php
-require_once __DIR__ . '/app/control/PessoaList.php';
-require_once __DIR__ . '/app/control/PessoaForm.php';
+
+require_once __DIR__ . '/vendor/autoload.php';
+
+use App\Control\PessoaList;
+use App\Control\PessoaForm;
 
 $action = isset($_GET['action']) ? $_GET['action'] : 'listar';
 
