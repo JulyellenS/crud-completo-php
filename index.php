@@ -4,11 +4,13 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 use App\Control\PessoaList;
 use App\Control\PessoaForm;
+use App\Control\Test;
 
 $action = isset($_GET['action']) ? $_GET['action'] : 'listar';
 
 $pessoaList = new PessoaList();
 $pessoaForm = new PessoaForm();
+$teste = new Test();
 
 switch ($action)
 {
@@ -23,6 +25,9 @@ switch ($action)
         break;
     case 'listar':
         $pessoaList->listar();
+        break;
+    case 'testar':
+        $teste->excluirPessoa();
         break;
     default:
         $pessoaList->listar();
