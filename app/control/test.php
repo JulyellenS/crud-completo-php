@@ -15,6 +15,8 @@ $service = new PessoaService();
 //     dump('Não foi possivel obter resultado');
 // }
 
-$pessoa = new Pessoa('1','Ana','12345678910','1234567890','1995-10-19','SSP-BA','41820-770','Rua ABC','Centro','Casa','470','Bahia (BA)','Salvador');
+// $pessoa = new Pessoa('1','Ana','12345678910','1234567890','1995-10-19','SSP-BA','41820-770','Rua ABC','Centro','Casa','470','Bahia (BA)','Salvador');
 
-$service->atualizarPessoa($pessoa);
+// $service->atualizarPessoa($pessoa);
+
+$service->excluirPessoa(12);
