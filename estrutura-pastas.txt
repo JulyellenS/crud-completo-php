@@ -1,0 +1,31 @@
+ htdocs/php
+        /crud-completo-php
+        │
+        ├── /app
+        │   ├── /control
+        │   │   ├── PessoaForm.php
+        │   │   └── PessoaList.php
+        │   ├── /model
+        │   │   ├── Pessoa.php
+        │   ├── /repository
+        │   │   ├── PessoaRepository.php
+        │   ├── /service
+        │   │   ├── PessoaService.php
+        │   ├── /html
+        │   │       ├── formulario-pessoa.php
+        │   │       ├── listagem-pessoa.php
+        │   │       └── navbar.php
+        │   └── /config
+        │   │       ├── Conexao.php
+        │   │       └──.env
+        │   ├── /css
+        │   │      ├── style.css
+        │   │      ├──navbar.css
+        │   │
+        ├── .htaccess
+        ├── .gitignore
+        │
+        ├── /vendor                
+        ├── composer.json
+        ├── composer.lock
+        ├── index.php
