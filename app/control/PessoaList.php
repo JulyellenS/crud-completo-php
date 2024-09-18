@@ -2,6 +2,7 @@
 namespace App\Control;
 
 use App\Service\PessoaService;
+use App\Model\Pessoa;
 
 class PessoaList
 {
@@ -16,18 +17,17 @@ class PessoaList
     {
         $pessoas = $this->service->listarPessoas();
         include __DIR__ . '/../html/listagem-pessoa.php';
-        // $this->render('listagem-pessoa.php', ['pessoas' => $pessoas]);
     }
 
     public function excluir()
     {
-        if (isset($_GET['id']))
+        if (isset($_GET['id_pessoa']))
         {
-            $id_pessoa = $_GET['id'];
+            $id_pessoa = $_GET['id_pessoa'];
             $this->service->excluirPessoa($id_pessoa);
         }
+        $pessoas = $this->service->listarPessoas();
         include __DIR__ . '/../html/listagem-pessoa.php';
-        // header('Location: ../html/listagem-pessoa.php');
         exit();
     }
 
@@ -51,29 +51,19 @@ class PessoaList
             $pessoa->setNmCidade($_POST['nm_cidade']);
             
             $this->service->atualizarPessoa($pessoa);
-            // $this->render('listagem-pessoa.php', ['pessoa' => $pessoa]);
             self::listar();
-            // header('Location: ../html/cadastro-pessoa.php');
             exit();
         }
         elseif (isset($_GET['id_pessoa']))
         {
             $id_pessoa = $_GET['id_pessoa'];
             $pessoa = $this->service->obterPessoa($id_pessoa);
-            $this->render('cadastro-pessoa.php', ['pessoa' => $pessoa]);
+            include __DIR__ . '/../html/cadastro-pessoa.php';
         }
         else
         {
-            // $this->render('listagem-pessoa.php');
             self::listar();
-            // header('Location: ../html/cadastro-pessoa.php');
             exit();
         }
-    }
-
-    private function render($template, $data = [])
-    {
-        extract($data); // Extrai variáveis do array $data para a tabela global
-        include __DIR__ . '../../html/' . $template;
     }
 }

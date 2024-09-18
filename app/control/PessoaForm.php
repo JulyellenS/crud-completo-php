@@ -2,6 +2,8 @@
 namespace App\Control;
 
 use App\Service\PessoaService;
+use App\Model\Pessoa;
+use Exception;
 
 class PessoaForm
 {
@@ -12,7 +14,6 @@ class PessoaForm
     {
         $this->pessoaService = new PessoaService();
         $this->pessoaList = new PessoaList();
-        // Instancia o serviço de Pessoa
     }
 
     public function cadastrarAtualizarPessoa()
@@ -44,15 +45,12 @@ class PessoaForm
                     // Atualiza a pessoa existente
                     $this->pessoaService->atualizarPessoa($pessoa);
                     include __DIR__ . '/../html/listagem-pessoa.php';
-                    // header('Location: index.php?action=listar');
-                    // $this->pessoaList->listar();
                 }
                 else
                 {
-                    // Cadastra uma nova pessoa
+                    // Cadastra uma nova pessoa caso o ID da pessoa seja vazio
                     $this->pessoaService->cadastrarPessoa($pessoa);
                     include __DIR__ . '/../html/listagem-pessoa.php';
-                    // header('Location: index.php?action=listar');
                 }
             }
             catch (Exception $e)
@@ -71,11 +69,5 @@ class PessoaForm
     public function cadastrar()
     {
         include __DIR__ . '/../html/cadastro-pessoa.php';
-    }
-
-    private function render($template, $data = [])
-    {
-        extract($data); // Extrai variáveis do array $data para a tabela global
-        include __DIR__ . '/../../html/' . $template;
     }
 }

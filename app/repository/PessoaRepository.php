@@ -3,6 +3,7 @@ namespace App\Repository;
 
 use App\Config\Conexao;
 use App\Model\Pessoa;
+use Exception;
 use PDO;
 
 class PessoaRepository
