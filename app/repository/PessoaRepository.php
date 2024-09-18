@@ -21,6 +21,19 @@ class PessoaRepository
 
     public function inserirPessoa(Pessoa $pessoa)
     {
+        $nm_pessoa = $pessoa->getNmPessoa();
+        $nu_cpf = $pessoa->getNuCpf();
+        $nu_registro = $pessoa->getNuRegistro();
+        $dt_nascimento = $pessoa->getDtNascimento();
+        $sg_orgaoexpedidor = $pessoa->getSgOrgaoExpedidor();
+        $nu_cep = $pessoa->getNuCep();
+        $nm_rua = $pessoa->getNmRua();
+        $nm_bairro = $pessoa->getNmBairro();
+        $ds_complemento = $pessoa->getDsComplemento();
+        $nu_endereco = $pessoa->getNuEndereco();
+        $nm_estado = $pessoa->getNmEstado();
+        $nm_cidade = $pessoa->getNmCidade();
+
         try
         {
             // Query de inserção
@@ -29,18 +42,18 @@ class PessoaRepository
 
             // Preparando a query
             $stmt = $this->conn->prepare($sql);
-            $stmt->bindValue(':nm_pessoa', $pessoa->getNmPessoa());
-            $stmt->bindValue(':nu_cpf', $pessoa->getNuCpf());
-            $stmt->bindValue(':nu_registro', $pessoa->getNuRegistro());
-            $stmt->bindValue(':dt_nascimento', $pessoa->getDtNascimento());
-            $stmt->bindValue(':sg_orgaoexpedidor', $pessoa->getSgOrgaoExpedidor());
-            $stmt->bindValue(':nu_cep', $pessoa->getNuCep());
-            $stmt->bindValue(':nm_rua', $pessoa->getNmRua());
-            $stmt->bindValue(':nm_bairro', $pessoa->getNmBairro());
-            $stmt->bindValue(':ds_complemento', $pessoa->getDsComplemento());
-            $stmt->bindValue(':nu_endereco', $pessoa->getNuEndereco());
-            $stmt->bindValue(':nm_estado', $pessoa->getNmEstado());
-            $stmt->bindValue(':nm_cidade', $pessoa->getNmCidade());
+            $stmt->bindValue(':nm_pessoa', $nm_pessoa);
+            $stmt->bindValue(':nu_cpf', $nu_cpf);
+            $stmt->bindValue(':nu_registro', $nu_registro);
+            $stmt->bindValue(':dt_nascimento', $dt_nascimento);
+            $stmt->bindValue(':sg_orgaoexpedidor', $sg_orgaoexpedidor);
+            $stmt->bindValue(':nu_cep', $nu_cep);
+            $stmt->bindValue(':nm_rua', $nm_rua);
+            $stmt->bindValue(':nm_bairro', $nm_bairro);
+            $stmt->bindValue(':ds_complemento', $ds_complemento);
+            $stmt->bindValue(':nu_endereco', $nu_endereco);
+            $stmt->bindValue(':nm_estado', $nm_estado);
+            $stmt->bindValue(':nm_cidade', $nm_cidade);
 
             // Executa a query
             if (!$stmt->execute())
@@ -57,7 +70,7 @@ class PessoaRepository
 
     public function buscarTodos()
     {
-        $sql = "SELECT id_pessoa, nm_pessoa, nu_cpf, dt_nascimento, nm_cidade FROM pessoa";
+        $sql = "SELECT id_pessoa, nm_pessoa, nu_cpf, dt_nascimento, nm_cidade FROM pessoa ORDER BY id_pessoa ASC";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -82,35 +95,62 @@ class PessoaRepository
 
     public function atualizar(Pessoa $pessoa)
     {
-        $sql = "UPDATE pessoa SET 
-                    nm_pessoa = :nm_pessoa, 
-                    nu_cpf = :nu_cpf, 
-                    nu_registro = :nu_registro, 
-                    dt_nascimento = :dt_nascimento, 
-                    sg_orgaoexpedidor = :sg_orgaoexpedidor, 
-                    nu_cep = :nu_cep, 
-                    nm_rua = :nm_rua, 
-                    nm_bairro = :nm_bairro, 
-                    ds_complemento = :ds_complemento, 
-                    nu_endereco = :nu_endereco, 
-                    nm_estado = :nm_estado, 
-                    nm_cidade = :nm_cidade 
-                WHERE id_pessoa = :id_pessoa";
+        $id_pessoa = $pessoa->getIdPessoa();
+        $nm_pessoa = $pessoa->getNmPessoa();
+        $nu_cpf = $pessoa->getNuCpf();
+        $nu_registro = $pessoa->getNuRegistro();
+        $dt_nascimento = $pessoa->getDtNascimento();
+        $sg_orgaoexpedidor = $pessoa->getSgOrgaoExpedidor();
+        $nu_cep = $pessoa->getNuCep();
+        $nm_rua = $pessoa->getNmRua();
+        $nm_bairro = $pessoa->getNmBairro();
+        $ds_complemento = $pessoa->getDsComplemento();
+        $nu_endereco = $pessoa->getNuEndereco();
+        $nm_estado = $pessoa->getNmEstado();
+        $nm_cidade = $pessoa->getNmCidade();
 
-        $stmt = $this->conn->prepare($sql);
-        $stmt->bindParam(':id_pessoa', $pessoa->getIdPessoa());
-        $stmt->bindParam(':nm_pessoa', $pessoa->getNmPessoa());
-        $stmt->bindParam(':nu_cpf', $pessoa->getNuCpf());
-        $stmt->bindParam(':nu_registro', $pessoa->getNuRegistro());
-        $stmt->bindParam(':dt_nascimento', $pessoa->getDtNascimento());
-        $stmt->bindParam(':sg_orgaoexpedidor', $pessoa->getSgOrgaoExpedidor());
-        $stmt->bindParam(':nu_cep', $pessoa->getNuCep());
-        $stmt->bindParam(':nm_rua', $pessoa->getNmRua());
-        $stmt->bindParam(':nm_bairro', $pessoa->getNmBairro());
-        $stmt->bindParam(':ds_complemento', $pessoa->getDsComplemento());
-        $stmt->bindParam(':nu_endereco', $pessoa->getNuEndereco());
-        $stmt->bindParam(':nm_estado', $pessoa->getNmEstado());
-        $stmt->bindParam(':nm_cidade', $pessoa->getNmCidade());
-        return $stmt->execute();
+        try
+        {
+            $sql = "UPDATE pessoa SET 
+                        nm_pessoa = :nm_pessoa, 
+                        nu_cpf = :nu_cpf, 
+                        nu_registro = :nu_registro, 
+                        dt_nascimento = :dt_nascimento, 
+                        sg_orgaoexpedidor = :sg_orgaoexpedidor, 
+                        nu_cep = :nu_cep, 
+                        nm_rua = :nm_rua, 
+                        nm_bairro = :nm_bairro, 
+                        ds_complemento = :ds_complemento, 
+                        nu_endereco = :nu_endereco, 
+                        nm_estado = :nm_estado, 
+                        nm_cidade = :nm_cidade 
+                    WHERE id_pessoa = :id_pessoa";
+
+            $stmt = $this->conn->prepare($sql);
+
+            $stmt->bindValue(':id_pessoa', $id_pessoa);
+            $stmt->bindValue(':nm_pessoa', $nm_pessoa);
+            $stmt->bindValue(':nu_cpf', $nu_cpf);
+            $stmt->bindValue(':nu_registro', $nu_registro);
+            $stmt->bindValue(':dt_nascimento', $dt_nascimento);
+            $stmt->bindValue(':sg_orgaoexpedidor', $sg_orgaoexpedidor);
+            $stmt->bindValue(':nu_cep', $nu_cep);
+            $stmt->bindValue(':nm_rua', $nm_rua);
+            $stmt->bindValue(':nm_bairro', $nm_bairro);
+            $stmt->bindValue(':ds_complemento', $ds_complemento);
+            $stmt->bindValue(':nu_endereco', $nu_endereco);
+            $stmt->bindValue(':nm_estado', $nm_estado);
+            $stmt->bindValue(':nm_cidade', $nm_cidade);
+
+            // Executa a query
+            if (!$stmt->execute())
+            {
+                throw new Exception('Erro ao executar a atualização: ' . implode(', ', $stmt->errorInfo()));
+            }
+        }
+        catch (Exception $e)
+        {
+            throw new Exception('Erro ao atualizar a pessoa no banco de dados: ' . $e->getMessage());
+        }
     }
 }
