@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página com Navbar</title>
     <link rel="stylesheet" href="app/css/navbar.css"> <!-- Certifique-se de que o caminho do seu CSS esteja correto -->
-    <link rel="stylesheet" href="../css/navbar.css"> Certifique-se de que o caminho do seu CSS esteja correto
 </head>
 <body>
     <!-- Navbar -->
