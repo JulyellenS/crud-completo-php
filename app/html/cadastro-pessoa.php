@@ -72,7 +72,7 @@
                     <input type="text" class="form-control" id="nm_cidade" name="nm_cidade" value="<?= isset($pessoa['nm_cidade']) ? $pessoa['nm_cidade'] : '' ?>" required>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary"><?= isset($pessoa) ? 'Salvar Alterações' : 'Cadastrar' ?></button>
+            <button type="submit" class="<?=isset($pessoa) ? 'btn btn-primary' : 'btn btn-success'?>"><?= isset($pessoa) ? 'Salvar Alterações' : 'Cadastrar' ?></button>
         </form>
     </div>
 
