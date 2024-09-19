@@ -8,22 +8,19 @@ use Exception;
 class PessoaForm
 {
     private $pessoaService;
-    private $pessoaList;
 
     public function __construct()
     {
         $this->pessoaService = new PessoaService();
-        $this->pessoaList = new PessoaList();
     }
 
-    public function cadastrarAtualizarPessoa()
+    public function cadastrarPessoa()
     {
         // Verifica se o formulário foi enviado via POST
         if ($_SERVER['REQUEST_METHOD'] == 'POST')
         {
             // Captura os dados do formulário
             $pessoa = new Pessoa();
-            $pessoa->setIdPessoa($_POST['id_pessoa']);
             $pessoa->setNmPessoa($_POST['nm_pessoa']);
             $pessoa->setNuCpf($_POST['nu_cpf']);
             $pessoa->setNuRegistro($_POST['nu_registro']);
@@ -39,19 +36,11 @@ class PessoaForm
 
             try
             {
-                // Verifica se o ID da pessoa está presente
-                if (!empty($pessoa->getIdPessoa()))
-                {
-                    // Atualiza a pessoa existente
-                    $this->pessoaService->atualizarPessoa($pessoa);
-                    include __DIR__ . '/../html/listagem-pessoa.php';
-                }
-                else
-                {
-                    // Cadastra uma nova pessoa caso o ID da pessoa seja vazio
-                    $this->pessoaService->cadastrarPessoa($pessoa);
-                    include __DIR__ . '/../html/listagem-pessoa.php';
-                }
+                $this->pessoaService->cadastrarPessoa($pessoa);
+                
+                // Redireciona para a tela de listagem
+                $pessoas = $this->pessoaService->listarPessoas();
+                include __DIR__ . '/../html/listagem-pessoa.php';
             }
             catch (Exception $e)
             {
@@ -60,14 +49,8 @@ class PessoaForm
         }
         else
         {
-            // Redireciona para a página de listagem se o acesso não for via POST
-            $this->pessoaList->listar();
+            include __DIR__ . '/../html/cadastro-pessoa.php';
             exit();
         }
-    }
-
-    public function cadastrar()
-    {
-        include __DIR__ . '/../html/cadastro-pessoa.php';
     }
 }
