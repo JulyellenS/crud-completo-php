@@ -4,18 +4,23 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 use App\Control\PessoaList;
 use App\Control\PessoaForm;
+use App\Control\LoginForm;
 use App\Control\Teste;
 
 $action = isset($_GET['action']) ? $_GET['action'] : 'listar';
 
 $pessoaList = new PessoaList();
 $pessoaForm = new PessoaForm();
+$loginForm = new LoginForm();
 $teste = new Teste();
 
 switch ($action)
 {
+    case 'entrar':
+        $loginForm->entrar();
+        break;
     case 'cadastrar':
-        $pessoaForm->cadastrar();
+        $pessoaForm->cadastrarPessoa();
         break;
     case 'editar':
         $pessoaList->editar();
