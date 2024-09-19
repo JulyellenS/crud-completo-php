@@ -8,7 +8,7 @@ body, .form-control
 /* Altera a cor das labels dos formulários e tabelas*/
 label, .table th
 {
-    color: #121212;
+    color: #ff0000;
 }
 
 .table td
