@@ -18,10 +18,13 @@ else
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Redefinir Senha</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/login.css">
 </head>
 <body>
-    <h2>Redefinir Senha</h2>
-    <form action="index.php?action=restaurarSenha" method="POST">
+    <div class="page">
+        <form class="formLogin" action="index.php?action=restaurarSenha" method="POST">
+        <h2>Redefinir Senha</h2>
         <input type="hidden" name="ds_tokenrecuperacao" value="<?= $token ?>">
 
         <label for="ds_senha">Nova Senha:</label>
@@ -29,5 +32,6 @@ else
 
         <button type="submit">Redefinir Senha</button>
     </form>
+</div>
 </body>
 </html>

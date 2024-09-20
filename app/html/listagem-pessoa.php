@@ -11,6 +11,7 @@
 <?php include 'navbar.php'; ?> <!-- Chama a navbar -->
     <div class="container mt-5">
         <h2>Listagem de Pessoas</h2>
+        <div class="linha"> </div>
         <a href="index.php?action=cadastrar" class="btn btn-success mb-3">Novo</a>
         <table class="table table-bordered">
             <thead>

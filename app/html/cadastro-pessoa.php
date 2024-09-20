@@ -11,6 +11,7 @@
 <?php include 'navbar.php'; ?> <!-- Chama a navbar -->
     <div class="container mt-5">
         <h2><?= isset($pessoa) ? 'Editar Pessoa' : 'Cadastrar Pessoa' ?></h2>
+        <div class="linha"> </div>
         <form id="pessoaForm" action="<?= isset($pessoa) ? 'index.php?action=editar' : 'index.php?action=cadastrar' ?>" method="POST">
             <!-- Campo oculto para o ID da pessoa -->
             <input type="hidden" name="id_pessoa" value="<?= isset($pessoa['id_pessoa']) ? $pessoa['id_pessoa'] : '' ?>">
