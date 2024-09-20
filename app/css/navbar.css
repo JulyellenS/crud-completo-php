@@ -1,38 +1,38 @@
-/* Estilos da navbar */
 .navbar
 {
-    background-color: #0720ab; /* Cor de fundo do navbar */
-    padding: 10px 20px;
+    background-color: #be874c;
+    padding: 5px 20px;
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 1000; /* Garantir que o navbar fique acima de outros elementos */
+    z-index: 1000;
 }
 
 .navbar-menu
 {
-    list-style-type: none; /* Remove os marcadores da lista */
+    list-style-type: none;
     margin: 0;
     padding: 0;
-    display: flex; /* Alinha os itens na horizontal */
+    display: flex;
 }
 
 .navbar-menu li
 {
-    margin-right: 20px; /* Espaçamento entre os links */
+    margin-right: 20px;
 }
 
 .navbar-menu li a
 {
-    color: white; /* Cor do texto */
+    color: #fff; /* Cor do texto */
     text-decoration: none; /* Remove o sublinhado dos links */
     padding: 10px 15px;
-    display: block; /* Faz com que o link ocupe todo o espaço do item */
+    display: block;
+    font-weight: 500;
 }
 
 .navbar-menu li a:hover
 {
-    background-color: #555; /* Cor de fundo ao passar o mouse */
+    background-color: #beb9b575;
     transition: background-color 0.3s;
 }
 

@@ -1,13 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
-body {
+body
+{
     font-family: 'Inter', sans-serif;
     margin: 0;
     padding: 0;
     color: #023047
 }
 
-.page {
+.page
+{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -15,38 +17,44 @@ body {
     justify-content: center;
     width: 100%;
     height: 100vh;
-    background-color: #480ca8;
+    background-color: #beb9b575;
 }
 
-.formLogin {
+.formLogin
+{
     display: flex;
     flex-direction: column;
-    background-color: #fff;
+    background-color: #f2f2f2f2;
     border-radius: 7px;
     padding: 40px;
     box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.4);
     gap: 5px
 }
 
-.areaLogin img {
+.areaLogin img
+{
     width: 420px;
 }
 
-.formLogin h1 {
+.formLogin h1
+{
     padding: 0;
     margin: 0;
     font-weight: 500;
     font-size: 2.3em;
+    color: #b1620e;
 }
 
-.formLogin p {
+.formLogin p
+{
     display: inline-block;
     font-size: 14px;
     color: #666;
     margin-bottom: 25px;
 }
 
-.formLogin input {
+.formLogin input
+{
     padding: 15px;
     font-size: 14px;
     border: 1px solid #ccc;
@@ -58,29 +66,32 @@ body {
 }
 
 
-.formLogin input:focus {
-    border: 1px solid #f72585;
+.formLogin input:focus
+{
+    border: 1px solid #b1620e;
 }
 
-.formLogin label {
+.formLogin label
+{
     font-size: 14px;
     font-weight: 600;
 }
 
-.formLogin a {
+.formLogin a
+{
     display: inline-block;
     margin-bottom: 20px;
     font-size: 13px;
-    color: #555;
+    color: #b1620e;
     transition: all linear 160ms;
 }
 
 .formLogin a:hover {
-    color: #f72585;
+    color: #b1620e;
 }
 
-.btn {
-    background-color: #f72585;
+.btn-login {
+    background-color: #b1620e;
     color: #fff;
     font-size: 14px;
     font-weight: 600;
@@ -91,8 +102,8 @@ body {
 
 }
 
-.btn:hover {
+.btn-login:hover {
     transform: scale(1.05);
-    background-color: #ff0676;
+    background-color: #b1620e;
 
 }

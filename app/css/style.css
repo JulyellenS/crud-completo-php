@@ -1,38 +1,34 @@
-/* Padrão: Tema claro */
-body, .form-control
+body
 {
-    background-color: #ffffff;
-    color: #333333;
+    background-color: #beb9b575;
+    color: #000;
 }
 
-/* Altera a cor das labels dos formulários e tabelas*/
-label, .table th
+.form-control
 {
-    color: #ff0000;
+    background-color: #f2f2f2f2;
 }
 
-.table td
+.table td, tr, th
 {
-    color: #333333;
+    color: #666;
+    font-weight: bold;
+    border: 1px solid #995d1d91 !important;
 }
 
-/* Tema escuro */
-@media (prefers-color-scheme: dark)
+label, .table th, h2
 {
-    body, .form-control
-    {
-        background-color: #121212;
-        color: #ffffff;
-    }
+    color: #b1620e;
+    font-weight: bold;
+}
 
-    .table td
-    {
-        color: #ffffff;
-    }
+.table-bordered
+{
+    background-color: #f2f2f2f2;
+}
 
-    /* Altera a cor das labels dos formulários e tabelas*/
-    label, .table th
-    {
-        color: #ffcc00;
-    }
+.linha
+{
+    border-top: 3px solid #995d1d91;
+    padding-bottom: 15px;
 }
