@@ -2,19 +2,20 @@
 namespace App\Control;
 
 use App\Config\Conexao;
+use App\Service\PessoaService;
 use PDO;
-
-session_start();
 
 class LoginForm
 {
     private $conexao;
+    private $service; 
     private $conn;
     
     public function __construct() 
     {
         $this->conexao = new Conexao();
         $this->conn = $this->conexao->conectar();
+        $this->service = new PessoaService();
     }
 
     public function entrar()
@@ -23,24 +24,23 @@ class LoginForm
         {
             $email = $_POST['ds_email'];
             $senha = $_POST['ds_senha'];
-        
-            // Verificar se o usuário existe
-            $sql = 'SELECT * FROM usuario_sistema WHERE ds_email = :email';
-            $stmt = $this->conn->prepare($sql);
-            $stmt->bindParam(':email', $email);
-            $stmt->execute();
-            $usuario_sistema = $stmt->fetch(PDO::FETCH_ASSOC);
-        
-            if ($usuario_sistema && password_verify($senha, $usuario_sistema['senha']))
+
+            if(!empty($email) && !empty($senha))
             {
-                $_SESSION['id_usuario'] = $usuario_sistema['id_usuario'];
-                include '/index.php';
-            }
-            else
-            {
-                echo 'Email ou senha incorretos!';
+                // Verificar se o usuário existe
+                $sql = 'SELECT * FROM usuario_sistema WHERE ds_email = :email';
+                $stmt = $this->conn->prepare($sql);
+                $stmt->bindParam(':email', $email);
+                $stmt->execute();
+                $usuario_sistema = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                if ($usuario_sistema && password_verify($senha, $usuario_sistema['senha']))
+                {
+                    $_SESSION['id_usuario'] = $usuario_sistema['id_usuario'];
+                }
             }
         }
+        include __DIR__ . '/../html/login.php';
     }
 
     public function sair()
@@ -48,7 +48,7 @@ class LoginForm
         session_start();
         session_unset(); // Remove todas as variáveis de sessão
         session_destroy(); // Destrói a sessão
-        header('Location: login.php');
+        include __DIR__ . '/../html/login.php';
         exit;
     }
 
