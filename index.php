@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require_once __DIR__ . '/vendor/autoload.php';
 
 use App\Control\PessoaList;
@@ -13,6 +13,12 @@ $pessoaList = new PessoaList();
 $pessoaForm = new PessoaForm();
 $loginForm = new LoginForm();
 $teste = new Teste();
+
+if (!isset($_SESSION['id_usuario']))
+{
+    include __DIR__ . '/app/html/login.php';
+    exit;
+}
 
 switch ($action)
 {
@@ -31,10 +37,10 @@ switch ($action)
     case 'listar':
         $pessoaList->listar();
         break;
-    case 'testar':
-        $teste->excluirPessoa();
-        break;
+    // case 'testar':
+    //     $teste->excluirPessoa();
+    //     break;
     default:
-        $pessoaList->listar();
+        $loginForm->entrar();
         break;
 }
