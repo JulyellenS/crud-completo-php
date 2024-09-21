@@ -1,45 +1,69 @@
 <?php
 namespace App\Control;
-
-use App\Config\Conexao;
-use App\Service\PessoaService;
+if (session_status() !== PHP_SESSION_ACTIVE)
+{
+    session_start();
+}
 use PDO;
+use Exception;
+use App\Config\Conexao;
+use App\Service\LoginService;
+use App\Control\PessoaList;
 
 class LoginForm
 {
+    private $loginService; 
+    private $pessoaList;
     private $conexao;
-    private $service; 
     private $conn;
     
     public function __construct() 
     {
+        $this->loginService = new LoginService();
+        $this->pessoaList = new PessoaList();
         $this->conexao = new Conexao();
         $this->conn = $this->conexao->conectar();
-        $this->service = new PessoaService();
     }
 
     public function entrar()
     {
-        if ($_SERVER['REQUEST_METHOD'] == 'POST')
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST')
         {
-            $email = $_POST['ds_email'];
-            $senha = $_POST['ds_senha'];
-
-            if(!empty($email) && !empty($senha))
+            return $this->exibirLogin();
+        }
+        
+        $email = $_POST['ds_email'] ?? '';
+        $senha = $_POST['ds_senha'] ?? '';
+        
+        if (empty($email) || empty($senha))
+        {
+            return $this->exibirLogin();
+        }
+        
+        try
+        {
+            $usuario = $this->loginService->entrar($email, $senha);
+            
+            if (!empty($usuario))
             {
-                // Verificar se o usuário existe
-                $sql = 'SELECT * FROM usuario_sistema WHERE ds_email = :email';
-                $stmt = $this->conn->prepare($sql);
-                $stmt->bindParam(':email', $email);
-                $stmt->execute();
-                $usuario_sistema = $stmt->fetch(PDO::FETCH_ASSOC);
+                $_SESSION['id_usuario'] = $usuario['id_usuario'];
+                $_SESSION['nm_usuario'] = $usuario['nm_usuario'];
 
-                if ($usuario_sistema && password_verify($senha, $usuario_sistema['senha']))
-                {
-                    $_SESSION['id_usuario'] = $usuario_sistema['id_usuario'];
-                }
+                $this->pessoaList->listar();
+            }
+            else
+            {
+                return $this->exibirLogin();
             }
         }
+        catch (Exception $e)
+        {
+            echo "Erro ao processar a solicitação: " . $e->getMessage();
+        }
+    }
+
+    private function exibirLogin()
+    {
         include __DIR__ . '/../html/login.php';
     }
 
@@ -168,6 +192,10 @@ class LoginForm
                 echo 'Erro ao cadastrar o usuário.';
             }
         }
+    }
 
+    public function home()
+    {
+        include __DIR__ . '/../html/home.php';
     }
 }
