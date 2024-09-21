@@ -8,7 +8,11 @@
     <link rel="stylesheet" href="app/css/style.css">
 </head>
 <body>
-<?php include 'navbar.php'; ?> <!-- Chama a navbar -->
+    <header>
+        <nav>    
+            <?php include 'navbar.php'; ?> <!-- Chama a navbar -->
+        </nav>
+    </header>
     <div class="container mt-5">
         <h2>Listagem de Pessoas</h2>
         <div class="linha"> </div>

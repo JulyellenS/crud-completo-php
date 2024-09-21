@@ -14,12 +14,8 @@
             <li><a href="index.php?action=cadastrar">Cadastrar Pessoa</a></li>
             <li><a href="index.php?action=listar">Listar Pessoas</a></li>
             <li><a href="#">Contato</a></li>
+            <li class="nav-item-right"><a href="index.php?action=sair">Sair</a></li>
         </ul>
     </nav>
-
-    <!-- Conteúdo da página -->
-    <div class="container">
-
-    </div>
 </body>
 </html>

@@ -8,6 +8,11 @@
     <link rel="stylesheet" href="../css/login.css">
 </head>
 <body>
+    <header>
+        <nav>    
+            <?php include 'navbar.php'; ?> <!-- Chama a navbar -->
+        </nav>
+    </header>
     <div class="page">
     <form class="formLogin" action="index.php?action=esqueciSenha" method="POST">
         <h2>Esqueci a Senha</h2>

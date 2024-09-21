@@ -8,6 +8,11 @@
     <link rel="stylesheet" href="../css/login.css">
 </head>
 <body>
+    <header>
+        <nav>    
+            <?php include 'navbar.php'; ?> <!-- Chama a navbar -->
+        </nav>
+    </header>
     <div class="page">
         <form class="formLogin" action="cadastro_action.php" method="POST">
             <h2>Cadastro de Usuário</h2>

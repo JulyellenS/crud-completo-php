@@ -1,8 +1,8 @@
 <?php
-
 if (isset($_SESSION['id_usuario']))
 {
     header('Location: index.php');
+    // include __DIR__ . '../../index.php';
     exit;
 }
 ?>
@@ -20,7 +20,11 @@ if (isset($_SESSION['id_usuario']))
     <link rel="stylesheet" href="app/css/style.css">
 </head>
 <body>
-<?php include 'navbar.php'; ?> <!-- Chama a navbar -->
+    <header>
+        <nav>    
+            <?php include 'navbar.php'; ?> <!-- Chama a navbar -->
+        </nav>
+    </header>
 <div class="page">
     <form id="loginForm" class="formLogin" action="index.php?action=entrar" method="POST">
         <h1>Login</h1>
@@ -29,7 +33,7 @@ if (isset($_SESSION['id_usuario']))
         <div class="row">
             <div class="form-group col-sm-12">
                 <label for="ds_email">E-mail</label>
-                <input type="email" id="ds_email" name="ds_email" placeholder="Digite seu e-mail" autofocus="true" autocomplete="current-password" required/>
+                <input type="email" id="ds_email" name="ds_email" placeholder="Digite seu e-mail" autofocus="true" autocomplete="email" required/>
             </div>
         </div>
         <div class="row">
@@ -42,6 +46,5 @@ if (isset($_SESSION['id_usuario']))
         <input type="submit" value="Acessar" class="btn btn-login" />
     </form>
 </div>
-    
 </body>
 </html>
