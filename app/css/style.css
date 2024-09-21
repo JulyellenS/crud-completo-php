@@ -32,3 +32,8 @@ label, .table th, h2
     border-top: 3px solid #995d1d91;
     padding-bottom: 15px;
 }
+
+.container
+{
+    padding: 20px;
+}
