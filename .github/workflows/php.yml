@@ -47,5 +47,5 @@ jobs:
           remote-port: ${{ secrets.FTP_PORTA }}
           local-path: ./
           sync: ${{ secrets.FTP_TIPO_SYNC }}
-          remote-password: ${{ secrets.FTP_SENHA }}
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
           artifacts: true
