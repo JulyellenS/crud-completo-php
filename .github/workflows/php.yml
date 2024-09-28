@@ -3,8 +3,8 @@ name: Build and deploy PHP app via FTP
 on:
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+  # pull_request:
+  #   branches: [ "main" ]
 
 jobs:
   build:
@@ -26,3 +26,29 @@ jobs:
         with:
           name: php-app
           path: .
+    
+  deploy:
+      runs-on: ubuntu-latest
+      needs: build
+  
+      steps:
+        - name: Download artifact from build job
+          uses: actions/download-artifact@v4
+          with:
+            name: php-app
+        - name: Checkout
+          uses: actions/checkout@v4
+          with:
+            fetch-depth: 0
+        - name: Upload via FTP
+          uses: milanmk/actions-file-deployer@master
+          with:
+            remote-protocol: sftp
+            remote-host: ${{ secrets.FTP_SERVIDOR }}
+            remote-user: ${{ secrets.FTP_USUARIO }}
+            remote-path: ${{ secrets.FTP_PASTA }}
+            remote-port: ${{ secrets.FTP_PORTA }}
+            sync: ${{ secrets.FTP_TIPO_SYNC }}
+            remote-password: ${{ secrets.FTP_SENHA }}
+            local-path: ./
+            artifacts: true
