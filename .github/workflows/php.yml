@@ -4,12 +4,6 @@ on:
   push:
     branches: [ "main" ]
     
-  workflow_dispatch:
-    inputs:
-      sync: "delta"
-        description: "File synchronization"
-        required: true
-        default: "delta"
 jobs:
   build:
     runs-on: ubuntu-latest
