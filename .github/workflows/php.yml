@@ -3,8 +3,6 @@ name: Build and deploy PHP app via FTP
 on:
   push:
     branches: [ "main" ]
-  # pull_request:
-  #   branches: [ "main" ]
 
 jobs:
   build:
@@ -16,7 +14,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.2'  # Defina a versão do PHP conforme necessário
+          php-version: '8.2'
 
       - name: Install dependencies
         run: composer install --no-dev --optimize-autoloader
@@ -26,29 +24,37 @@ jobs:
         with:
           name: php-app
           path: .
-    
+
   deploy:
-      runs-on: ubuntu-latest
-      needs: build
+    runs-on: ubuntu-latest
+    needs: build
   
-      steps:
-        - name: Download artifact from build job
-          uses: actions/download-artifact@v4
-          with:
-            name: php-app
-        - name: Checkout
-          uses: actions/checkout@v4
-          with:
-            fetch-depth: 0
-        - name: Upload via FTP
-          uses: milanmk/actions-file-deployer@master
-          with:
-            remote-protocol: sftp
-            remote-host: ${{ secrets.FTP_SERVIDOR }}
-            remote-user: ${{ secrets.FTP_USUARIO }}
-            remote-path: ${{ secrets.FTP_PASTA }}
-            remote-port: ${{ secrets.FTP_PORTA }}
-            sync: ${{ secrets.FTP_TIPO_SYNC }}
-            remote-password: ${{ secrets.FTP_SENHA }}
-            local-path: ./
-            artifacts: true
+    steps:
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v4
+        with:
+          name: php-app
+
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.FTP_SERVIDOR }} >> ~/.ssh/known_hosts
+
+      - name: Upload via SFTP
+        uses: milanmk/actions-file-deployer@master
+        with:
+          remote-protocol: sftp
+          remote-host: ${{ secrets.FTP_SERVIDOR }}
+          remote-user: ${{ secrets.FTP_USUARIO }}
+          remote-path: ${{ secrets.FTP_PASTA }}
+          remote-port: ${{ secrets.FTP_PORTA }}
+          sync: ${{ secrets.FTP_TIPO_SYNC }}
+          local-path: ./
+          artifacts: true
