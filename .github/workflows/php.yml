@@ -3,6 +3,13 @@ name: Build and deploy PHP app via FTP
 on:
   push:
     branches: [ "main" ]
+    
+  workflow_dispatch:
+    inputs:
+      sync: "delta"
+        description: "File synchronization"
+        required: true
+        default: "delta"
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -47,5 +54,6 @@ jobs:
           remote-port: ${{ secrets.FTP_PORTA }}
           local-path: ./
           sync: ${{ secrets.FTP_TIPO_SYNC }}
+          remote-password: ${{ secrets.FTP_SENHA }}
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
           artifacts: true
